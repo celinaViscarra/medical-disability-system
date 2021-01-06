@@ -5,7 +5,7 @@ import {MenuItems} from "./MenuItems";
 class Navbar extends Component{
     render() {
         return(
-            <nav className="NavBarItems">
+            <nav className="NavbarItems">
                 <h1 className="navbar-logo">React<i className="fab fa-react"></i></h1>
                 <div className="menu-icon">
                     
