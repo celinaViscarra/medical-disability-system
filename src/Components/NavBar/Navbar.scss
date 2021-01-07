@@ -1,17 +1,29 @@
-.NavbarItems{
-    background: gray;
+.navbar{
+    background:linear-gradient(248deg, rgb(68, 66, 81)10%, rgb(68, 66, 81)29%);
     height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
 
 .navbar-logo{
-    color: black;
+    color: #CBCBCF;
     justify-self: start;
     margin-left: 10px;
     cursor: pointer;
+    font-size: 2rem;
+}
+
+.navbar-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    max-width: 1500px;
 }
 
 .fa-react{
@@ -31,19 +43,20 @@
 }
 
 .nav-links{
-    color: lavenderblush;
+    color: #CBCBCF;
     text-decoration: none;
     padding: 0.5rem 1rem;
 }
 
 .nav-links:hover{
-    background-color: cornflowerblue;
+    background-color: #CBCBCF;
     border-radius: 4px;
     transition: all 0.2s ease-out;
+    color: #444251;
 }
 
 .fa-bars{
-    color: antiquewhite;
+    color: #cdc9e9;
 
 }
 
@@ -74,7 +87,7 @@
     }
 
     .nav-menu.active {
-        background:black;
+        background: #4f4c5e;
         left: 0;
         opacity: 1;
         transition: all 0.5s ease;
@@ -86,10 +99,11 @@
         padding: 2rem;
         width: 100%;
         display: table;
+        
     }
 
     .nav-links:hover {
-        background-color: lightgrey;
+        background-color: #CBCBCF;
         border-radius: 0;
     }
 
@@ -111,7 +125,7 @@
     }
 
     .fa-times {
-        color: black;
+        color: #e4e4e5;
         font-size: 2rem;
     }
 
@@ -122,9 +136,9 @@
         margin: 2rem auto;
         border-radius: 4px;
         width: 80%;
-        background: lavender;
+        background: #444251;
         text-decoration: none;
-        color: black;
+        color: #CBCBCF;
         font-size: 1.5rem;
     }
 

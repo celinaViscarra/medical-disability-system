@@ -1,39 +1,88 @@
 import React, { Component } from 'react';
 import './Navbar.scss'
 import {MenuItems} from "./MenuItems";
+import {Link} from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import {Button} from '../NavBar/Button'
 
-class Navbar extends Component{
-    state = { clicked: false}
-    
-    handleClick = () => {
-        this.setState({clicked: !this.state.clicked})
-    }
-
-    render() {
-        return(
-            <nav className="NavbarItems">
-                <h1 className="navbar-logo"> FOCUS <i className="fab fa-react"> </i> </h1>
-                <div className="menu-icon" onClick={this.handleClick}>
-                    <i className={this.state.clicked ? 'fas fa-times': 'fas fa-bars'}> </i>
+function Navbar() {
+    const [click, setClick] = useState(false);
+    const [button, setButton] = useState(true);
+  
+    const handleClick = () => setClick(!click);
+    const closeMobileMenu = () => setClick(false);
+  
+    const showButton = () => {
+      if (window.innerWidth <= 960) {
+        setButton(false);
+      } else {
+        setButton(true);
+      }
+    };
+  
+    useEffect(() => {
+      showButton();
+    }, []);
+  
+    window.addEventListener('resize', showButton);
+  
+        return (
+            <>
+              <nav className='navbar'>
+                <div className='navbar-container'>
+                  <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
+                    FOCUS
+                    <i class='fab fa-react' />
+                  </Link>
+                  <div className='menu-icon' onClick={handleClick}>
+                    <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
+                  </div>
+                  <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+                    <li className='nav-item'>
+                      <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+                        Home
+                      </Link>
+                    </li>
+                    <li className='nav-item'>
+                      <Link
+                        to='/employees'
+                        className='nav-links'
+                        onClick={closeMobileMenu}>
+                        Employees
+                      </Link>
+                    </li>
+                    <li className='nav-item'>
+                      <Link
+                        to='/med'
+                        className='nav-links'
+                        onClick={closeMobileMenu}>
+                        Medical Disabilities
+                      </Link>
+                    </li>
+                    <li className='nav-item'>
+                      <Link
+                        to='/users'
+                        className='nav-links'
+                        onClick={closeMobileMenu}>
+                        Users
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to='/signup'
+                        className='nav-links-mobile'
+                        onClick={closeMobileMenu}>
+                        Sign Up
+                      </Link>
+                    </li>
+                  </ul>
+                  {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>}
                 </div>
-                <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
-                    {MenuItems.map((item, index) => {
-                        return(
-                            <li key={index}> 
-                                <a className={item.cName} href={item.url}>
-                                {item.title}
-                                </a>
-                            </li>
-                        )
-                    })}
-                    
-                </ul>
-                <button>Sign Up</button>
-
-            </nav>
-        )
-
+              </nav>
+            </>
+          );
+    
     }
-}
 
-export default Navbar
+export default Navbar;
+        
