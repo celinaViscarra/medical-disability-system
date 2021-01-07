@@ -1,10 +1,10 @@
 import React from 'react';
 import {HashRouter, Route, Switch} from 'react-router-dom';
-import Employees from '../paginas/Employees';
-import MD from '../paginas/MD';
+import Employees from '../Employees/Employees';
+import MD from '../Disabilities/MD';
 import Home from '../paginas/Home';
 import SignUp from '../paginas/SignUp';
-import Users from '../paginas/Users';
+import Users from '../Users/Users';
 import Navbar from '../NavBar/Navbar';
 
 function Routing() {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Navbar.scss'
-import {MenuItems} from "./MenuItems";
+import {MenuItems} from "./MenuItems"; 
 import {Link} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import {Button} from '../NavBar/Button'
@@ -67,7 +67,7 @@ function Navbar() {
                         Users
                       </Link>
                     </li>
-                    <li>
+                    <li className='nav-item'>
                       <Link
                         to='/signup'
                         className='nav-links-mobile'
@@ -76,7 +76,7 @@ function Navbar() {
                       </Link>
                     </li>
                   </ul>
-                  {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>}
+                  {button && <Button buttonStyle='btn--outline'>Sign Up</Button>}
                 </div>
               </nav>
             </>
