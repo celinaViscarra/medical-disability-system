@@ -1,7 +1,7 @@
 import { Box, Text } from 'grommet';
 import { StatusCritical, StatusGood } from 'grommet-icons';
 import React, { useContext } from 'react';
-import { QueryClient, QueryClientProvider, useMutation } from 'react-query'
+import { QueryClient, useMutation } from 'react-query'
 import { EmployeesContext } from '../Context';
 import { createEntry, updateEntry } from '../sdk/managementAPI';
 import FormLayout from './FormLayout';
@@ -12,14 +12,6 @@ function Form() {
   } = useContext(EmployeesContext);
 
   const queryClient = new QueryClient()
-
-  function App() {
-     return (
-       <QueryClientProvider client={queryClient}>
-         ...
-       </QueryClientProvider>
-     )
-  }
 
   const mutation = useMutation( //error
     function ({ data, id }) {

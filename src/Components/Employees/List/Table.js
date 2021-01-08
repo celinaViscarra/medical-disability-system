@@ -1,15 +1,14 @@
-import {DataTable, Box} from 'react-super-responsive-table';
 import React from 'react';
 import 'react-super-responsive-table';
 import '../../../App.scss';
-import { Button, Text } from 'grommet';
+import { Button, Text, DataTable, Box } from 'grommet';
 import { Actions, FormClose, FormEdit } from 'grommet-icons';
 
 export default function Table({ employees, setCurrent, deleteMovie }) {
     return (
       <DataTable
         columns={[
-          { property: 'id', primary: true, header: <Text>Id</Text> },
+          { property: 'id', primary: true, header: <Text>ID</Text> },
           { property: 'name', header: <Text>Name</Text> },
           { property: 'dateOfAdmission', header: <Text>Date Of Admission</Text> },
           { property: 'jobPosition', header: <Text>Job Position</Text> },

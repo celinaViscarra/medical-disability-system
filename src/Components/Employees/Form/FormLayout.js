@@ -22,7 +22,7 @@ function FormLayout({ onSubmit, currentValues }) {
         onSubmit(event.value);
       }}
     >
-      <FormField label="Id" name="id">
+      <FormField label="ID" name="id">
         <TextInput name="id" />
       </FormField>
 
@@ -30,16 +30,16 @@ function FormLayout({ onSubmit, currentValues }) {
         <TextInput name="name" />
       </FormField>
 
-      <FormField label="Date of admission" name="dateOfAdmission">
-        <TextInput name="dateOfAdmission" format="yyyy-mm-dd" />/>
+      <FormField label="Date Of Admission" name="dateOfAdmission">
+        <TextInput name="dateOfAdmission" format="yyyy-mm-dd" />
       </FormField>
 
-      <FormField label="Job position" name="jobPosition">
-        <TextInput type="number" name="jobPosition" icon={<Money />} />
+      <FormField label="Job Position" name="jobPosition">
+        <TextInput type="number" name="jobPosition"/>
       </FormField>
 
       <FormField label="DUI" name="dui">
-        <TextInput type="number" name="dui" icon={<Money />} />
+        <TextInput type="number" name="dui"/>
       </FormField>
 
 

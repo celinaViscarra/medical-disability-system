@@ -1,7 +1,7 @@
 import { Box, Button, Text } from 'grommet';
 import { AddCircle, Refresh, StatusCritical } from 'grommet-icons';
 import React, { useContext } from 'react';
-import { useMutation, useQuery, QueryClient, QueryClientProvider } from 'react-query';
+import { useMutation, useQuery, QueryClient } from 'react-query';
 import { EmployeesContext } from '../Context';
 import { getEntries } from '../sdk/deliveryAPI';
 import { deleteEntry } from '../sdk/managementAPI';
@@ -13,14 +13,6 @@ function List() {
   } = useContext(EmployeesContext);
 
 const queryClient = new QueryClient()
-
-function App() {
-   return (
-     <QueryClientProvider client={queryClient}>
-       ...
-     </QueryClientProvider>
-   )
-}
 
   const { isLoading, error, data, isFetching} = useQuery(
     'fetchEmployees', //error
