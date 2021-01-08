@@ -1,6 +1,6 @@
  
 import React from 'react';
-import '../../App.scss';
+import '../App.scss';
 
 function Home() {
   return <h1 className='Home'>Home</h1>;
