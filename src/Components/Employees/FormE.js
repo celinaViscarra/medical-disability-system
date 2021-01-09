@@ -1,17 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import '../../App.scss';
-import { db } from '../../Firebase';
 
-const TableMed = (props) => {
+const TableE = (props) => {
 
   //initial values
   const initialStateValues = {
+    id: "",
+    name: "",
+    lastname: "",
     dui: "",
     date: "",
-    medarea: "",
-    doctor: "",
-    start: "",
-    finish: "",
+    job: "",
+    genre: "",
   };
 
   const [values, setValues] = useState(initialStateValues);
@@ -27,116 +27,103 @@ const TableMed = (props) => {
   const handleSubmit = (e) =>{
     e.preventDefault();
     props.addOrEdit(values);
-    setValues({...initialStateValues});
+    console.log(values);
   };
-
-  //no furula
-  const getValueById = async (id) => {
-    const doc = await db.collection("md").doc(id).get();
-    console.log({...doc.data()});
-    console.log('averaka');
-  };
-
-  //no furula
-  useEffect(()=>{
-    if(props.currenId === ""){
-      setValues({...initialStateValues});
-    }else{
-      console.log('aver');
-      getValueById();
-      console.log(props.currenId);
-    }
-  }, [props.currenId]);
 
   return (
     <form className="card card-body" onSubmit={handleSubmit}>
-      <b><span> For medical disabilities</span></b>
+      <b><span> Employee Form</span></b>
       <h6>  </h6>
-
+      <div>
       <div className="form-group input-group">
         <div className="input-group-text bg-light">
         <i className="material-icons">person</i>
-        <span>Employee DUI:</span>
+        <span>ID:</span>
         </div>
         <input 
-        type="text"
+        type="number"
         className="form-control"
-        name="dui"
-        onChange={handleImputChanges}
-        value={values.dui} />
+        placeholder="0000"
+        name="id"
+        onChange={handleImputChanges} />
       </div>
 
       <div className="form-group input-group">
         <div className="input-group-text bg-light">
-        <i className="material-icons">today</i>
-        <span>Date:</span>
-        </div>
-        <input 
-        type="datetime"
-        className="form-control"
-        placeholder="dd-mm-yyyy"
-        name="date"
-        onChange={handleImputChanges}
-        value={values.date} />
-      </div>
-
-      <div className="form-group input-group">
-        <div className="input-group-text bg-light">
-         <i className="material-icons">healing</i>
-         <span>Medical Area:</span>
+         <i className="material-icons">navigate_next</i>
+         <span>Name:</span>
         </div>
         <input type="text"
         className="form-control"
-        name="medarea"
-        onChange={handleImputChanges}
-        value={values.medarea} />
+        name="name"
+        onChange={handleImputChanges} />
+      </div>
+
+      <div className="form-group input-group">
+        <div className="input-group-text bg-light">
+         <i className="material-icons">navigate_next</i>
+         <span>Last Name: </span>
+        </div>
+        <input type="text"
+        className="form-control"
+        name="lastname" 
+        onChange={handleImputChanges}/>
       </div>
 
       <div className="form-group input-group">
         <div className="input-group-text bg-light">
          <i className="material-icons">face</i>
-         <span>Doctor: </span>
+         <span>DUI: </span>
         </div>
         <input type="text"
         className="form-control"
-        name="doctor" 
-        onChange={handleImputChanges}
-        value={values.doctor}/>
+        placeholder="xxxxxxxx-x"
+        name="dui" 
+        onChange={handleImputChanges}/>
       </div>
 
       <div className="form-group input-group">
         <div className="input-group-text bg-light">
-         <i className="material-icons">arrow_upward</i>
-         <span>Date of star: </span>
+         <i className="material-icons">event</i>
+         <span>Date of admission: </span>
         </div>
-        <input type="text"
+        <input type="datetime"
         className="form-control"
         placeholder="dd-mm-yyyy"
-        name="start" 
-        onChange={handleImputChanges}
-        value={values.start}/>
+        name="date"
+        onChange={handleImputChanges}  />
       </div>
 
       <div className="form-group input-group">
         <div className="input-group-text bg-light">
-         <i className="material-icons">arrow_downward</i>
-         <span>Date of finish: </span>
+         <i className="material-icons">show_chart</i>
+         <span>Job Position: </span>
         </div>
         <input type="text"
         className="form-control"
-        placeholder="dd-mm-yyyy"
-        name="finish"
-        onChange={handleImputChanges} 
-        value={values.finish} />
+        name="job"
+        onChange={handleImputChanges}  />
       </div>
 
+      <div className="form-group input-group">
+        <div className="input-group-text bg-light">
+         <i className="material-icons">wc</i>
+         <span>Genre: </span>
+        </div>
+        <input type="text"
+        className="form-control"
+        name="genre"
+        onChange={handleImputChanges}  />
+      </div>
+      <div >
       <button className="btn btn-success">
         Save
       </button>
-
+      </div>
+      </div>
 
     </form>
   );
 }
 
-export default TableMed;
+export default TableE;

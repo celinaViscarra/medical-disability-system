@@ -43,30 +43,6 @@ function Navbar() {
                     </li>
                     <li className='nav-item'>
                       <Link
-                        to='/employees'
-                        className='nav-links'
-                        onClick={closeMobileMenu}>
-                        Employees
-                      </Link>
-                    </li>
-                    <li className='nav-item'>
-                      <Link
-                        to='/med'
-                        className='nav-links'
-                        onClick={closeMobileMenu}>
-                        Medical Disabilities
-                      </Link>
-                    </li>
-                    <li className='nav-item'>
-                      <Link
-                        to='/users'
-                        className='nav-links'
-                        onClick={closeMobileMenu}>
-                        Users
-                      </Link>
-                    </li>
-                    <li className='nav-item'>
-                      <Link
                         to='/signup'
                         className='nav-links'
                         onClick={closeMobileMenu}>
@@ -83,3 +59,29 @@ function Navbar() {
 
 export default Navbar;
         
+/* aun pensando donde ponerlo.
+<li className='nav-item'>
+<Link
+to='/employees'
+className='nav-links'
+onClick={closeMobileMenu}>
+Employees
+</Link>
+</li>
+<li className='nav-item'>
+<Link
+to='/med'
+className='nav-links'
+onClick={closeMobileMenu}>
+Medical Disabilities
+</Link>
+</li>
+<li className='nav-item'>
+<Link
+to='/users'
+className='nav-links'
+onClick={closeMobileMenu}>
+Users
+</Link>
+</li>
+*/

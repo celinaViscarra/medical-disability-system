@@ -1,19 +1,12 @@
-import React, {useEffect, useState} from 'react';
-import TableMed from './FormMed';
-import {db} from '../../Firebase';
+import React, {useState, useEffect} from 'react';
+import '../../App.scss';
+import { db } from '../../Firebase';
 import {toast}  from 'react-toastify';
 
-
-const Med = () => {
-
+const Table = (props) => {
     const [values, setValues] = useState([]);
+  
     const [currentId, setCurrentId] = useState('');
-
-    const addOrEdit = async (valueObject) => {
-        await db.collection('md').doc().set(valueObject); 
-        toast('New Disability Added', {type:'success'});
-        //'md' indica la colección donde se almacenan los datos
-    };
 
     const onDelete = async (id) => { //for delete a value
       if(window.confirm('Are you sure to delete this?')){
@@ -38,10 +31,8 @@ const Med = () => {
     }, []);
 
 
-    return(
-      <div>
-        <TableMed {...{addOrEdit, currentId, values}}/>
-
+    return (
+      <form className="card card-body">
         <div>
           {values.map(value => (
             <div className="card mb-1" key={value.id}>
@@ -67,8 +58,8 @@ const Med = () => {
           )
             )}
         </div>
-      </div>
+       </form>
     );
-}
+  }
 
-export default Med;
+export default Table;
