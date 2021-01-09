@@ -31,12 +31,12 @@ const TableMed = (props) => {
 
   return (
     <form className="card card-body" onSubmit={handleSubmit}>
-      <b><span> For re</span></b>
+      <b><span> For medical disabilities</span></b>
       <h6>  </h6>
 
       <div className="form-group input-group">
         <div className="input-group-text bg-light">
-        <i className="material-icons">today</i>
+        <i className="material-icons">person</i>
         <span>Employee DUI:</span>
         </div>
         <input 
