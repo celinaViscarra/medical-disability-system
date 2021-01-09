@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import '../../App.scss';
 
-const TableU = () => {
+const TableMed = (props) => {
 
   //initial values
   const initialStateValues = {
+    dui: "",
     date: "",
     medarea: "",
     doctor: "",
@@ -19,19 +20,32 @@ const TableU = () => {
     //Para alterar ya el estado.
     const {name, value} = e.target;
     setValues({...values, [name]:value});
-    console.log(e.target.value);
   };
 
   //when submit values
   const handleSubmit = (e) =>{
     e.preventDefault();
-    console.log(values);
+    props.addOrEdit(values);
+    setValues({...initialStateValues});
   };
 
   return (
     <form className="card card-body" onSubmit={handleSubmit}>
       <b><span> For re</span></b>
       <h6>  </h6>
+
+      <div className="form-group input-group">
+        <div className="input-group-text bg-light">
+        <i className="material-icons">today</i>
+        <span>Employee DUI:</span>
+        </div>
+        <input 
+        type="text"
+        className="form-control"
+        name="dui"
+        onChange={handleImputChanges}
+        value={values.dui} />
+      </div>
 
       <div className="form-group input-group">
         <div className="input-group-text bg-light">
@@ -43,7 +57,8 @@ const TableU = () => {
         className="form-control"
         placeholder="dd-mm-yyyy"
         name="date"
-        onChange={handleImputChanges} />
+        onChange={handleImputChanges}
+        value={values.date} />
       </div>
 
       <div className="form-group input-group">
@@ -54,7 +69,8 @@ const TableU = () => {
         <input type="text"
         className="form-control"
         name="medarea"
-        onChange={handleImputChanges} />
+        onChange={handleImputChanges}
+        value={values.medarea} />
       </div>
 
       <div className="form-group input-group">
@@ -65,7 +81,8 @@ const TableU = () => {
         <input type="text"
         className="form-control"
         name="doctor" 
-        onChange={handleImputChanges}/>
+        onChange={handleImputChanges}
+        value={values.doctor}/>
       </div>
 
       <div className="form-group input-group">
@@ -77,7 +94,8 @@ const TableU = () => {
         className="form-control"
         placeholder="dd-mm-yyyy"
         name="start" 
-        onChange={handleImputChanges}/>
+        onChange={handleImputChanges}
+        value={values.start}/>
       </div>
 
       <div className="form-group input-group">
@@ -89,7 +107,8 @@ const TableU = () => {
         className="form-control"
         placeholder="dd-mm-yyyy"
         name="finish"
-        onChange={handleImputChanges}  />
+        onChange={handleImputChanges} 
+        value={values.finish} />
       </div>
 
       <button className="btn btn-success">
@@ -101,4 +120,4 @@ const TableU = () => {
   );
 }
 
-export default TableU;
+export default TableMed;
