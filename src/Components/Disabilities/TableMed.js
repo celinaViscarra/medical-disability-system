@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import '../../App.scss';
+import { db } from '../../Firebase';
 
 const TableMed = (props) => {
 
@@ -28,6 +29,24 @@ const TableMed = (props) => {
     props.addOrEdit(values);
     setValues({...initialStateValues});
   };
+
+  //no furula
+  const getValueById = async (id) => {
+    const doc = await db.collection("md").doc(id).get();
+    console.log({...doc.data()});
+    console.log('averaka');
+  };
+
+  //no furula
+  useEffect(()=>{
+    if(props.currenId === ""){
+      setValues({...initialStateValues});
+    }else{
+      console.log('aver');
+      getValueById();
+      console.log(props.currenId);
+    }
+  }, [props.currenId]);
 
   return (
     <form className="card card-body" onSubmit={handleSubmit}>

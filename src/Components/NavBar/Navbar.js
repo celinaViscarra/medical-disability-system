@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import './Navbar.scss'
-import {MenuItems} from "./MenuItems"; 
+import './Navbar.scss';
 import {Link} from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import {Button} from '../NavBar/Button'
 
 function Navbar() {
     const [click, setClick] = useState(false);

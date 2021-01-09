@@ -7,20 +7,22 @@ import {toast}  from 'react-toastify';
 const Med = () => {
 
     const [values, setValues] = useState([]);
+    const [currentId, setCurrentId] = useState('');
 
     const addOrEdit = async (linkObject) => {
         await db.collection('md').doc().set(linkObject); 
+        toast('New Disability Added', {type:'success'});
         //'md' indica la colección donde se almacenan los datos
     };
 
-    const onDelete = async (id) => {
+    const onDelete = async (id) => { //for delete a value
       if(window.confirm('Are you sure to delete this?')){
         await db.collection('md').doc(id).delete();
-        toast('New Disability Added', {type:'success'});
-        console.log('task deleted');
-
+        toast('Disability Deleted Succesfully', {type:'error'});
       }
     };
+
+
 
     const getData = async () => {
       db.collection('md').onSnapshot((querySnapshot) =>{
@@ -40,7 +42,7 @@ const Med = () => {
 
     return(
       <div>
-        <TableMed addOrEdit={addOrEdit}/>
+        <TableMed {...{addOrEdit, currentId, values}}/>
 
         <div>
           {values.map(value => (
@@ -48,8 +50,11 @@ const Med = () => {
               <div className="card-body">
                 <div className="d-flex justify-content-between">
                   <h2>Employee DUI: {value.dui}</h2>
+                  <div>
+                  <i className="material-icons" onClick={() => setCurrentId(value.id)}>create</i>
                   <i className="material-icons text-danger" onClick={() =>
                     onDelete(value.id)}>close</i>
+                    </div>
                 </div>
                 <h3>Responsable Doctor: {value.doctor}</h3>
                 <h5>Med Area: {value.medarea}</h5>
