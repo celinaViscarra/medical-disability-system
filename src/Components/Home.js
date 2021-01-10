@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Card, Button, Alert } from "react-bootstrap"
 import { useAuth } from "./SignUp/Context/AuthContext"
-import { Link, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import Navbar from "./NavBar/Navbar"
 
 export default function Dashboard() {
@@ -22,10 +22,12 @@ export default function Dashboard() {
 
   return (
     <>
-      <Card>
+    <div>
         <Navbar/>
+      <Card>
         <Card.Body>
-          <h2 className="text-center mb-4">Profile</h2>
+          <h1 className="text-center mb-4">Welcome!</h1>
+          <h2 className="text-center mb-4">Hi, there!</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <strong>Email:</strong> {currentUser.email}
         </Card.Body>
@@ -34,6 +36,7 @@ export default function Dashboard() {
         <Button variant="link" onClick={handleLogout}>
           Log Out
         </Button>
+      </div>
       </div>
     </>
   )

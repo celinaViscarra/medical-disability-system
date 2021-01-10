@@ -8,11 +8,21 @@ import Navbar from '../NavBar/Navbar';
 const Employee = () => {
 
   const [values, setValues] = useState([]);
-    const [currentId, setCurrentId] = useState('');
+  const [currentId, setCurrentId] = useState('');
 
-    const addOrEdit = async (valueObject) => {
+  const addOrEdit = async (valueObject) => {
+    try {
+      if (currentId === '') {
         await db.collection('employees').doc().set(valueObject); 
-        toast('New Disability Added', {type:'success'});
+        toast('New Employee Added', {type:'success'});
+      } else {
+        await db.collection('employees').doc(currentId).update(valueObject);
+        toast('Employee Updated Successfully', {type:'info'});
+      }
+        setCurrentId('');
+    } catch (error) {
+      console.error(error);
+    }
         //'employees' indica la colección donde se almacenan los datos
     };
 
@@ -29,7 +39,6 @@ const Employee = () => {
       querySnapshot.forEach(doc => {
         docs.push({...doc.data(), id:doc.id });
       });
-      console.log(docs);
       setValues(docs);
       });
     };
@@ -55,7 +64,8 @@ const Employee = () => {
                     <i title="Add Disability" className="material-icons">add</i>
                     </button>
                     <button type="button" className="btn btn-info btn-sm">
-                    <i title="Edit Employee" className="material-icons" onClick={() => setCurrentId(value.id)}>create</i>
+                    <i title="Edit Employee" className="material-icons" onClick={() => 
+                      setCurrentId(value.id)}>create</i>
                     </button>
                     <button type="button" className="btn btn-danger btn-sm">
                     <i title="Delete Employee" className="large material-icons" onClick={() =>

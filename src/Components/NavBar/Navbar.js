@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Navbar.scss';
 import {Link} from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function Navbar() {
     const [click, setClick] = useState(false);
-    const [button, setButton] = useState(true);
+    // const [button, setButton] = useState(true);
   
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
   
+    /*
     const showButton = () => {
       if (window.innerWidth <= 960) {
         setButton(false);
@@ -21,8 +22,8 @@ function Navbar() {
     useEffect(() => {
       showButton();
     }, []);
-  
-    window.addEventListener('resize', showButton);
+ 
+    window.addEventListener('resize', showButton); */
   
         return (
             <>
@@ -49,12 +50,17 @@ function Navbar() {
                       </Link>
                     </li>
                     <li className='nav-item'>
+                      <Link to='/listE' className='nav-links' onClick={closeMobileMenu}>
+                        List of Employees
+                      </Link>
+                    </li>
+                    <li className='nav-item'>
                       <Link to='/med' className='nav-links' onClick={closeMobileMenu}>
                         Medical Disability
                       </Link>
                     </li>
                     <li className='nav-item'>
-                      <Link to='/md' className='nav-links' onClick={closeMobileMenu}>
+                      <Link to='/listMD' className='nav-links' onClick={closeMobileMenu}>
                         Medical Disabilities
                       </Link>
                     </li>

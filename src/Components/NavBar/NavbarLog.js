@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Navbar.scss';
 import {Link} from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function NavbarLog() {
     const [click, setClick] = useState(false);
-    const [button, setButton] = useState(true);
+    // const [button, setButton] = useState(true);
   
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
   
+    /*
     const showButton = () => {
       if (window.innerWidth <= 960) {
         setButton(false);
@@ -21,9 +22,9 @@ function NavbarLog() {
     useEffect(() => {
       showButton();
     }, []);
-  
-    window.addEventListener('resize', showButton);
-  
+ 
+    window.addEventListener('resize', showButton); */
+
         return (
             <>
               <nav className='navbar'>

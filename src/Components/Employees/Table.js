@@ -3,11 +3,11 @@ import '../../App.scss';
 import { db } from '../../Firebase';
 import Navbar from '../NavBar/Navbar';
 
-const Table = (props) => {
+const TableEmployees = (props) => {
     const [values, setValues] = useState([]);
 
     const getData = async () => {
-      db.collection('md').onSnapshot((querySnapshot) =>{
+      db.collection('employees').onSnapshot((querySnapshot) =>{
         const docs = [];
       querySnapshot.forEach(doc => {
         docs.push({...doc.data(), id:doc.id });
@@ -31,11 +31,12 @@ const Table = (props) => {
           {values.map(value => (
             <div className="card mb-1" key={value.id}>
               <div className="card-body">
-                <h2>Employee DUI: {value.dui}</h2>
-                <h3>Responsable Doctor: {value.doctor}</h3>
-                <h5>Med Area: {value.medarea}</h5>
-                <h6>Start date: {value.start}</h6>
-                <h6>Finish date: {value.finish}</h6>
+                <h4>Name: {value.name}</h4>
+                <h5>Last Name: {value.lastname}</h5>
+                <h6>DUI: {value.dui}</h6>
+                <h6>Date: {value.date}</h6>
+                <h6>Job Position: {value.jobposition}</h6>
+                <h6>Genre: {value.genre}</h6>
                 </div>
                 </div>
           )
@@ -46,4 +47,4 @@ const Table = (props) => {
     );
   }
 
-export default Table;
+export default TableEmployees;

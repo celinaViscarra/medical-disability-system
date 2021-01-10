@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import '../../App.scss';
 import { db } from '../../Firebase';
+import {toast}  from 'react-toastify';
 
 const TableMed = (props) => {
 
@@ -23,30 +24,58 @@ const TableMed = (props) => {
     setValues({...values, [name]:value});
   };
 
+  //for invocate the dui
+  //const invocateDUi = 
+
+  //for validate dui.
+  const validateDui = (str) =>{
+    return /^(\d{0,8}-)\d{1}$/.test(str);
+  };
+
+  //for validate dates.
+  const validateDate = (str) => {
+    return /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/.test(str);
+  };
+
   //when submit values
   const handleSubmit = (e) =>{
     e.preventDefault();
+
+    if (!validateDui(values.dui)){
+      return toast('Invalid DUI!', {type:'warning', autoClose: 1000});
+    }
+
+    if (!validateDate(values.date)){
+      return toast('Invalid Date!', {type:'warning', autoClose: 1000});
+    }
+
+    if (!validateDate(values.start)){
+      return toast('Invalid Date!', {type:'warning', autoClose: 1000});
+    }
+
+    if (!validateDate(values.finish)){
+      return toast('Invalid Date!', {type:'warning', autoClose: 1000});
+    }
+
     props.addOrEdit(values);
     setValues({...initialStateValues});
   };
 
-  
-  const getValueById = async (id) => {
+  const getValueById = async (id) =>{
     const doc = await db.collection("md").doc(id).get();
-    console.log({...doc.data()});
-    console.log('averaka');
+    console.log(doc.data())
+    setValues({...doc.data()})
   };
 
-  //no furula
-  useEffect(()=>{
-    if(props.currenId === ""){
-      setValues({...initialStateValues});
-    }else{
-      console.log('aver');
-      getValueById();
-      console.log(props.currenId);
+  useEffect(() => {
+    console.log(props.currentId)
+    if(props.currentId === ''){
+      setValues({...initialStateValues})
+    } else {
+      console.log(props.currentId)
+      getValueById(props.currentId);
     }
-  }, [props.currenId]);
+  }, [props.currentId]);
 
   return (
     <form className="card card-body" onSubmit={handleSubmit}>
@@ -62,6 +91,7 @@ const TableMed = (props) => {
         type="text"
         className="form-control"
         name="dui"
+        required={true}
         onChange={handleImputChanges}
         value={values.dui} />
       </div>
@@ -76,6 +106,7 @@ const TableMed = (props) => {
         className="form-control"
         placeholder="dd-mm-yyyy"
         name="date"
+        required={true}
         onChange={handleImputChanges}
         value={values.date} />
       </div>
@@ -88,6 +119,7 @@ const TableMed = (props) => {
         <input type="text"
         className="form-control"
         name="medarea"
+        required={true}
         onChange={handleImputChanges}
         value={values.medarea} />
       </div>
@@ -100,6 +132,7 @@ const TableMed = (props) => {
         <input type="text"
         className="form-control"
         name="doctor" 
+        required={true}
         onChange={handleImputChanges}
         value={values.doctor}/>
       </div>
@@ -113,6 +146,7 @@ const TableMed = (props) => {
         className="form-control"
         placeholder="dd-mm-yyyy"
         name="start" 
+        required={true}
         onChange={handleImputChanges}
         value={values.start}/>
       </div>
@@ -124,6 +158,7 @@ const TableMed = (props) => {
         </div>
         <input type="text"
         className="form-control"
+        required={true}
         placeholder="dd-mm-yyyy"
         name="finish"
         onChange={handleImputChanges} 
@@ -132,7 +167,7 @@ const TableMed = (props) => {
 
       <div>
       <button className="btn btn-success">
-        Save
+        {props.currentId === '' ? 'Save' : 'Update'}
       </button>
       </div>
 

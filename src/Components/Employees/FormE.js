@@ -1,5 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import '../../App.scss';
+import { db } from '../../Firebase';
+import {toast}  from 'react-toastify';
 
 const TableE = (props) => {
 
@@ -14,7 +16,7 @@ const TableE = (props) => {
     genre: "",
   };
 
-  const [values, setValues] = useState(initialStateValues);
+  const [values, setValues] = useState('');
 
   //For ONchange e (state)
   const handleImputChanges = (e) =>{
@@ -23,12 +25,48 @@ const TableE = (props) => {
     setValues({...values, [name]:value});
   };
 
+  //for validate dui.
+  const validateDui = (str) =>{
+    return /^(\d{0,8}-)\d{1}$/.test(str);
+  };
+
+  //for validate dates.
+  const validateDate = (str) => {
+    return /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/.test(str);
+  };
+
   //when submit values
   const handleSubmit = (e) =>{
     e.preventDefault();
+
+    if (!validateDui(values.dui)){
+      return toast('Invalid DUI!', {type:'warning', autoClose: 1000});
+    }
+
+    if (!validateDate(values.date)){
+      return toast('Invalid Date!', {type:'warning', autoClose: 1000});
+    }
+
     props.addOrEdit(values);
     console.log(values);
+    setValues({...initialStateValues});
   };
+
+  const getValueById = async (id) =>{
+    const doc = await db.collection("employees").doc(id).get();
+    console.log(doc.data())
+    setValues({...doc.data()})
+  };
+
+  useEffect(() => {
+    console.log(props.currentId)
+    if(props.currentId === ''){
+      setValues({...initialStateValues})
+    } else {
+      console.log(props.currentId)
+      getValueById(props.currentId);
+    }
+  }, [props.currentId]);
 
   return (
     <form className="card card-body" onSubmit={handleSubmit}>
@@ -42,8 +80,10 @@ const TableE = (props) => {
         </div>
         <input 
         type="number"
+        required={true}
         className="form-control"
         placeholder="0000"
+        value={values.id}
         name="id"
         onChange={handleImputChanges} />
       </div>
@@ -53,7 +93,10 @@ const TableE = (props) => {
          <i className="material-icons">navigate_next</i>
          <span>Name:</span>
         </div>
-        <input type="text"
+        <input 
+        type="text"
+        value={values.name}
+        required={true}
         className="form-control"
         name="name"
         onChange={handleImputChanges} />
@@ -64,7 +107,10 @@ const TableE = (props) => {
          <i className="material-icons">navigate_next</i>
          <span>Last Name: </span>
         </div>
-        <input type="text"
+        <input 
+        type="text"
+        value={values.lastname}
+        required={true}
         className="form-control"
         name="lastname" 
         onChange={handleImputChanges}/>
@@ -75,8 +121,11 @@ const TableE = (props) => {
          <i className="material-icons">face</i>
          <span>DUI: </span>
         </div>
-        <input type="text"
+        <input 
+        type="text"
+        value={values.dui}
         className="form-control"
+        required={true}
         placeholder="xxxxxxxx-x"
         name="dui" 
         onChange={handleImputChanges}/>
@@ -87,9 +136,12 @@ const TableE = (props) => {
          <i className="material-icons">event</i>
          <span>Date of admission: </span>
         </div>
-        <input type="datetime"
+        <input 
+        type="datetime"
+        value={values.date}
         className="form-control"
         placeholder="dd-mm-yyyy"
+        required={true}
         name="date"
         onChange={handleImputChanges}  />
       </div>
@@ -99,8 +151,11 @@ const TableE = (props) => {
          <i className="material-icons">show_chart</i>
          <span>Job Position: </span>
         </div>
-        <input type="text"
+        <input 
+        type="text"
+        value={values.job}
         className="form-control"
+        required={true}
         name="job"
         onChange={handleImputChanges}  />
       </div>
@@ -110,14 +165,17 @@ const TableE = (props) => {
          <i className="material-icons">wc</i>
          <span>Genre: </span>
         </div>
-        <input type="text"
+        <input 
+        type="text"
+        required={true}
+        value={values.genre}
         className="form-control"
         name="genre"
         onChange={handleImputChanges}  />
       </div>
       <div >
       <button className="btn btn-success">
-        Save
+        {props.currentId === '' ? 'Save' : 'Update'}
       </button>
       </div>
       </div>
