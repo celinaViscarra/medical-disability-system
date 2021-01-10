@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import TableE from './FormE';
 import {db} from '../../Firebase';
 import {toast}  from 'react-toastify';
+import Navbar from '../NavBar/Navbar';
+
 
 const Employee = () => {
 
@@ -39,6 +41,7 @@ const Employee = () => {
     
     return(
       <div>
+        <Navbar/>
       <TableE {...{addOrEdit, currentId, values}}/>
 
       <div>

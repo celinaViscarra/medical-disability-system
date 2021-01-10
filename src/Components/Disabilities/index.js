@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import TableMed from './FormMed';
 import {db} from '../../Firebase';
 import {toast}  from 'react-toastify';
+import Navbar from '../NavBar/Navbar';
 
 
 const Med = () => {
@@ -40,6 +41,7 @@ const Med = () => {
 
     return(
       <div>
+        <Navbar/>
         <TableMed {...{addOrEdit, currentId, values}}/>
 
         <div>

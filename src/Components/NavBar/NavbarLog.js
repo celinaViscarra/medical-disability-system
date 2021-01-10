@@ -3,7 +3,7 @@ import './Navbar.scss';
 import {Link} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-function Navbar() {
+function NavbarLog() {
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
   
@@ -38,24 +38,13 @@ function Navbar() {
                   </div>
                   <ul className={click ? 'nav-menu active' : 'nav-menu'}>
                   <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+                    
                     <li className='nav-item'>
-                      <Link to='/' className='nav-links' onClick={closeMobileMenu}>
-                        Home
-                      </Link>
-                    </li>
-                    <li className='nav-item'>
-                      <Link to='/employees' className='nav-links' onClick={closeMobileMenu}>
-                        Employees
-                      </Link>
-                    </li>
-                    <li className='nav-item'>
-                      <Link to='/med' className='nav-links' onClick={closeMobileMenu}>
-                        Medical Disability
-                      </Link>
-                    </li>
-                    <li className='nav-item'>
-                      <Link to='/md' className='nav-links' onClick={closeMobileMenu}>
-                        Medical Disabilities
+                      <Link
+                        to='/signup'
+                        className='nav-links'
+                        onClick={closeMobileMenu}>
+                        Sign Up
                       </Link>
                     </li>
                     </ul>
@@ -68,4 +57,4 @@ function Navbar() {
     
     }
 
-export default Navbar;
+export default NavbarLog;

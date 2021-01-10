@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
-import 'firebase/firestore'
+import 'firebase/firestore';
+import 'firebase/auth';
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -13,5 +14,11 @@ var firebaseConfig = {
 
   // Initialize Firebase
  const fb = firebase.initializeApp(firebaseConfig);
+ const db = fb.firestore();
 
- export const db = fb.firestore();
+ //For auth.
+ const googleAuth = new firebase.auth.GithubAuthProvider();
+ 
+ const auth = fb.auth()
+
+ export {db, auth, googleAuth};

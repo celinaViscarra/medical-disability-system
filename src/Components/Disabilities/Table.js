@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import '../../App.scss';
 import { db } from '../../Firebase';
 import {toast}  from 'react-toastify';
+import Navbar from '../NavBar/Navbar';
 
 const Table = (props) => {
     const [values, setValues] = useState([]);
@@ -32,8 +33,11 @@ const Table = (props) => {
 
 
     return (
+      <div>
+        <Navbar/>
       <form className="card card-body">
         <div>
+          
           {values.map(value => (
             <div className="card mb-1" key={value.id}>
               <div className="card-body">
@@ -59,6 +63,7 @@ const Table = (props) => {
             )}
         </div>
        </form>
+       </div>
     );
   }
 
