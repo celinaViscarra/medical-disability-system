@@ -3,6 +3,7 @@ import TableMed from './FormMed';
 import {db} from '../../Firebase';
 import {toast}  from 'react-toastify';
 import Navbar from '../NavBar/Navbar';
+import CheckLogIn from '../Routing/checkLogin';
 
 const Med = () => {
     //Def consts.
@@ -54,6 +55,7 @@ const Med = () => {
     //Return.
     return(
       <div>
+        <CheckLogIn/>
         <Navbar/>
         <TableMed {...{addOrEdit, currentId, values}}/>
 

@@ -3,6 +3,7 @@ import TableE from './FormE';
 import {db} from '../../Firebase';
 import {toast}  from 'react-toastify';
 import Navbar from '../NavBar/Navbar';
+import CheckLogIn from '../Routing/checkLogin';
 
 
 const Employee = () => {
@@ -50,6 +51,7 @@ const Employee = () => {
     
     return(
       <div>
+        <CheckLogIn/>
         <Navbar/>
       <TableE {...{addOrEdit, currentId, values}}/>
 
@@ -58,8 +60,7 @@ const Employee = () => {
           <div className="card mb-1" key={value.id}>
             <div className="card-body">
                 <div className="d-flex justify-content-between">
-                
-                <h5>Last Name: {value.lastname}</h5>
+                <h5>DUI: {value.dui}</h5>
                   <div className="btn-group" role="group" aria-label="Basic example">
                     <button type="button" className="btn btn-info btn-sm">
                     <i title="Edit Employee" className="material-icons" onClick={() => 
@@ -67,12 +68,12 @@ const Employee = () => {
                     </button>
                     <button type="button" className="btn btn-danger btn-sm">
                     <i title="Delete Employee" className="large material-icons" onClick={() =>
-                    onDelete(value.id)}>close</i>
+                    onDelete(value.ide)}>close</i>
                     </button>
                   </div>
                 </div>
               <h5>Name: {value.name}</h5>
-              <h6>DUI: {value.dui}</h6>
+              <h5>Last Name: {value.lastname}</h5>
               <h6>Date: {value.date}</h6>
               <h6>Job Position: {value.job}</h6>
               <h6>Genre: {value.genre}</h6>

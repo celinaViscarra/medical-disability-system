@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import '../../App.scss';
 import { db } from '../../Firebase';
 import Navbar from '../NavBar/Navbar';
+import CheckLogIn from '../Routing/checkLogin';
 
 const TableEmployees = (props) => {
     const [values, setValues] = useState([]);
@@ -24,6 +25,7 @@ const TableEmployees = (props) => {
 
     return (
       <div>
+        <CheckLogIn/>
         <Navbar/>
       <form className="card card-body">
         <div>

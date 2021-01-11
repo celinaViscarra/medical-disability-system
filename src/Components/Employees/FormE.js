@@ -7,7 +7,7 @@ const TableE = (props) => {
 
   //initial values
   const initialStateValues = {
-    id: "",
+    ide: "",
     name: "",
     lastname: "",
     dui: "",
@@ -93,8 +93,8 @@ const TableE = (props) => {
         required={true}
         className="form-control"
         placeholder="0000"
-        value={values.id}
-        name="id"
+        value={values.ide}
+        name="ide"
         onChange={handleImputChanges} />
       </div>
 
