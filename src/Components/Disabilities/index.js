@@ -4,12 +4,12 @@ import {db} from '../../Firebase';
 import {toast}  from 'react-toastify';
 import Navbar from '../NavBar/Navbar';
 
-
 const Med = () => {
-
+    //Def consts.
     const [values, setValues] = useState([]);
     const [currentId, setCurrentId] = useState('');
 
+    //Funtion add/edit.
     const addOrEdit = async (valueObject) => {
       try {
         if (currentId === '') {
@@ -26,6 +26,7 @@ const Med = () => {
           //'employees' indica la colección donde se almacenan los datos
       };
 
+    //Funtion delete.
     const onDelete = async (id) => { //for delete a value
       if(window.confirm('Are you sure to delete this?')){
         await db.collection('md').doc(id).delete();
@@ -33,6 +34,7 @@ const Med = () => {
       }
     };
 
+    //Show data.
     const getData = async () => {
       db.collection('md').orderBy("dui", "asc").onSnapshot((querySnapshot) =>{
         const docs = [];
@@ -47,8 +49,9 @@ const Med = () => {
     useEffect(() => {
       getData();
     }, []);
+    
 
-
+    //Return.
     return(
       <div>
         <Navbar/>
