@@ -16,7 +16,8 @@ function Routing() {
         <Router>
           <AuthProvider>
                 <Switch>
-                    <Route exact path='/' component={Home}/>
+                    <Route exact path='/' component={SignUp}/>
+                    <Route path='/home' component={Home}/>
                     <Route path='/employees'component={Employees}/>
                     <Route path='/listE' component={TableEmployees}/>
                     <Route path='/med'component={Med}/>

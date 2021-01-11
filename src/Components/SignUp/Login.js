@@ -1,8 +1,10 @@
-import React, { useRef, useState } from "react"
+import React, { useRef, useState, Component} from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from "../SignUp/Context/AuthContext"
 import { Link, useHistory } from "react-router-dom"
 import NavbarLog from '../NavBar/NavbarLog';
+import * as firebase from "firebase/app";
+import withFirebaseAuth from 'react-with-firebase-auth'
 
 export default function Login() {
     const emailRef = useRef()
@@ -19,7 +21,7 @@ export default function Login() {
         setError("")
         setLoading(true)
         await login(emailRef.current.value, passwordRef.current.value)
-        history.push("/")
+        history.push("/home")
       } catch {
         setError("Failed to log in")
       }
