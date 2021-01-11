@@ -68,7 +68,7 @@ const Employee = () => {
                     </button>
                     <button type="button" className="btn btn-danger btn-sm">
                     <i title="Delete Employee" className="large material-icons" onClick={() =>
-                    onDelete(value.ide)}>close</i>
+                    onDelete(value.id)}>close</i>
                     </button>
                   </div>
                 </div>
