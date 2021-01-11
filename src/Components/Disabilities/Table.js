@@ -7,7 +7,7 @@ const Table = (props) => {
     const [values, setValues] = useState([]);
 
     const getData = async () => {
-      db.collection('md').onSnapshot((querySnapshot) =>{
+      db.collection('md').orderBy("dui", "asc").onSnapshot((querySnapshot) =>{
         const docs = [];
       querySnapshot.forEach(doc => {
         docs.push({...doc.data(), id:doc.id });

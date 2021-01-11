@@ -14,10 +14,10 @@ const Med = () => {
       try {
         if (currentId === '') {
           await db.collection('md').doc().set(valueObject); 
-          toast('New Disability Added', {type:'success'});
+          toast('New Disability Added', {type:'success', autoClose: 2000});
         } else {
           await db.collection('md').doc(currentId).update(valueObject);
-          toast('Disability Updated Successfully', {type:'info'});
+          toast('Disability Updated Successfully', {type:'info', autoClose: 2000});
         }
           setCurrentId('');
       } catch (error) {
@@ -34,7 +34,7 @@ const Med = () => {
     };
 
     const getData = async () => {
-      db.collection('md').onSnapshot((querySnapshot) =>{
+      db.collection('md').orderBy("dui", "asc").onSnapshot((querySnapshot) =>{
         const docs = [];
       querySnapshot.forEach(doc => {
         docs.push({...doc.data(), id:doc.id });
@@ -76,11 +76,10 @@ const Med = () => {
                 <h6>Start date: {value.start}</h6>
                 <h6>Finish date: {value.finish}</h6>
                 </div>
-              </div>
-          )
-            )}
-        </div>
+          </div>
+        ))};
       </div>
+    </div>
     );
 }
 

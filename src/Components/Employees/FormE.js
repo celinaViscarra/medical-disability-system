@@ -25,6 +25,12 @@ const TableE = (props) => {
     setValues({...values, [name]:value});
   };
 
+  //Validations.
+  //For validate genre.
+  const validateGenre = (str) => {
+    return /^(F|M)$/.test(str);
+  };
+
   //for validate dui.
   const validateDui = (str) =>{
     return /^(\d{0,8}-)\d{1}$/.test(str);
@@ -39,12 +45,16 @@ const TableE = (props) => {
   const handleSubmit = (e) =>{
     e.preventDefault();
 
+    if(!validateGenre(values.genre)){
+      return toast('Please verify the last entry!', {type:'warning', autoClose: 2000})
+    }
+
     if (!validateDui(values.dui)){
-      return toast('Invalid DUI!', {type:'warning', autoClose: 1000});
+      return toast('Invalid DUI!', {type:'warning', autoClose: 2000});
     }
 
     if (!validateDate(values.date)){
-      return toast('Invalid Date!', {type:'warning', autoClose: 1000});
+      return toast('Invalid Date!', {type:'warning', autoClose: 2000});
     }
 
     props.addOrEdit(values);

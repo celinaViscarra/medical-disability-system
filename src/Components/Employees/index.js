@@ -14,10 +14,10 @@ const Employee = () => {
     try {
       if (currentId === '') {
         await db.collection('employees').doc().set(valueObject); 
-        toast('New Employee Added', {type:'success'});
+        toast('New Employee Added', {type:'success', autoClose: 2000});
       } else {
         await db.collection('employees').doc(currentId).update(valueObject);
-        toast('Employee Updated Successfully', {type:'info'});
+        toast('Employee Updated Successfully', {type:'info', autoClose: 2000});
       }
         setCurrentId('');
     } catch (error) {
@@ -34,7 +34,7 @@ const Employee = () => {
     };
 
     const getData = async () => {
-      db.collection('employees').onSnapshot((querySnapshot) =>{
+      db.collection('employees').orderBy("dui", "asc").onSnapshot((querySnapshot) =>{
         const docs = [];
       querySnapshot.forEach(doc => {
         docs.push({...doc.data(), id:doc.id });
@@ -58,11 +58,9 @@ const Employee = () => {
           <div className="card mb-1" key={value.id}>
             <div className="card-body">
                 <div className="d-flex justify-content-between">
-                  <h3>ID: {value.id}</h3>
+                
+                <h5>Last Name: {value.lastname}</h5>
                   <div className="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" className="btn btn-secondary btn-sm" > 
-                    <i title="Add Disability" className="material-icons">add</i>
-                    </button>
                     <button type="button" className="btn btn-info btn-sm">
                     <i title="Edit Employee" className="material-icons" onClick={() => 
                       setCurrentId(value.id)}>create</i>
@@ -73,11 +71,10 @@ const Employee = () => {
                     </button>
                   </div>
                 </div>
-              <h4>Name: {value.name}</h4>
-              <h5>Last Name: {value.lastname}</h5>
+              <h5>Name: {value.name}</h5>
               <h6>DUI: {value.dui}</h6>
               <h6>Date: {value.date}</h6>
-              <h6>Job Position: {value.jobposition}</h6>
+              <h6>Job Position: {value.job}</h6>
               <h6>Genre: {value.genre}</h6>
             </div>
           </div>

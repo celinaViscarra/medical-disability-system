@@ -17,8 +17,8 @@ var firebaseConfig = {
  const db = fb.firestore();
 
  //For auth.
- const googleAuth = new firebase.auth.GithubAuthProvider();
+ const google = new firebase.auth.GithubAuthProvider();
  
  const auth = fb.auth()
 
- export {db, auth, googleAuth};
+ export {db, auth, google};
