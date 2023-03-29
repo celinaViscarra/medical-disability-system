@@ -2,7 +2,6 @@
 
 **Group:** *01*
 
-**Member:** *Celina Abigail Alfaro Viscarra*
 
 ## Deployment
 
